@@ -83,7 +83,6 @@ public class ThreadTest17 {
 		ProductThread pth = new ProductThread(databox);
 		ConsumerThread cth = new ConsumerThread(databox);
 			
-		
 		pth.start();
 		cth.start();
 	}
