@@ -33,16 +33,14 @@ public class ThreadTest14 {
 		lock.lock();
 		boolean ch = false;
 		try{
-		if (balance >= money) {
-			for (int i = 0; i < 100000000; i++) {
-				
+			if (balance >= money) {
+				for (int i = 0; i < 100000000; i++) { }
+				balance-= money;
+				System.out.println("메서드 안에서 balance : "+ balance);
+				ch= true;
+			}else{
+				ch= false;
 			}
-			balance-= money;
-			System.out.println("메서드 안에서 balance : "+ balance);
-			ch= true;
-		}else{
-			ch= false;
-		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -59,14 +57,11 @@ public class ThreadTest14 {
 		// 익명 클래스 구현체를 이용한 쓰레드 구현
 		Runnable test = new Runnable() {
 
-			@Override
-			public void run() {
-				boolean result = acount.withdaw(6000);
-				System.out.println("쓰레드에서 result :" + result + ", balance : "
-						+ acount.getBalance());
-
-			}
-		};
+		@Override
+		public void run() {
+			boolean result = acount.withdaw(6000);
+			System.out.println(Thread.currentThread().getName() + "쓰레드에서 result :" + result + ", balance : " + acount.getBalance());
+		}};
 
 		// -----------------------
 		Thread th1 = new Thread(test);

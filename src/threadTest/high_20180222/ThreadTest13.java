@@ -47,7 +47,7 @@ public class ThreadTest13 {
 			@Override
 			public void run() {
 				boolean result = acount.withdaw(6000);
-				System.out.println("쓰레드에서 result :" + result + ", balance : "
+				System.out.println(Thread.currentThread().getName() + " 쓰레드에서 result :" + result + ", balance : "
 						+ acount.getBalance());
 
 			}
