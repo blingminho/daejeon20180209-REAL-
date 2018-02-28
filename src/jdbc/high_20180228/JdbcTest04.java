@@ -1,12 +1,13 @@
 package jdbc.high_20180228;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+
+import util.DBUtil;
 
 /*
  * lprod테이블에 새로운 데이터 추가하기
@@ -17,10 +18,6 @@ public class JdbcTest04 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.print("gu 입력 : ");
-		String gu = sc.nextLine();
-		System.out.print("nm 입력 : ");
-		String nm = sc.nextLine();
 		int id = 0;
 
 		
@@ -31,13 +28,15 @@ public class JdbcTest04 {
 		
 		
 		try {
-			// 1. 드라이버 로딩
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			// 1. 드라이버 로딩
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			
+//			// 2. DB접속
+//			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "pc17", "java");
 			
-			// 2. DB접속
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "pc17", "java");
+			conn = DBUtil.getConnection();
 			
-			// 2.5 id를 받아오기 위한 select문
+			// 2.1 id를 받아오기 위한 select문
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("select lprod_id as id from lprod");
 			
@@ -48,6 +47,32 @@ public class JdbcTest04 {
 				}
 			}
 			id += 1;
+			
+			String gu = "";
+			int count = 0;// 조건에 만족하는 레코드 수가 저장될 변수
+			// 2.2 입력받기
+			do {
+				System.out.print("추가할 gu 입력 : ");
+				gu = sc.nextLine();
+				String sql = "select count(*) cnt from lprod where lprod_gu = ?";
+				PreparedStatement pstmt2 = conn.prepareStatement(sql);
+				pstmt2.setString(1, gu);
+				
+				rs = pstmt2.executeQuery();
+				if (rs.next()) {
+					count = rs.getInt("cnt");
+				}
+				
+				if (count > 0) {// 자료가 있으면
+					System.out.println("입력한 값 " + gu +"는 이미 있는 코드입니다.");
+					System.out.println("새로운 값으로 다시 입력하세요");
+				}
+				
+			} while (count > 0);
+			
+			System.out.print("추가할 nm 입력 : ");
+			String nm = sc.nextLine();
+			
 			
 			// 3. PreparedStatement객체 생성 : Connection객체를 이용한다
 			pstmt = conn.prepareStatement("insert into lprod(lprod_id, lprod_gu, lprod_nm) values(?, ?, ?)");
@@ -61,8 +86,6 @@ public class JdbcTest04 {
 			int cnt = pstmt.executeUpdate();
 			System.out.println("반환값 : " + cnt);
 			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
