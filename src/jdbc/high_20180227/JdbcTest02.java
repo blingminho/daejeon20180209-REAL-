@@ -54,7 +54,8 @@ public class JdbcTest02 {
 //			String sql = "select * from lprod where lprod_id > " + input;
 			
 			// 문제 2
-			String sql = "select * from lprod where lprod_id > " + input + "and lprod_id < " + input2;
+//			String sql = "select * from lprod where lprod_id > " + input + "and lprod_id < " + input2;
+			String sql = "select * from lprod where lprod_id between " + input + " and " + input2;
 			
 			rs = stmt.executeQuery(sql);
 			
