@@ -22,7 +22,7 @@ public class JdbcTest01 {
 	 * 
 	 * 3. 질의 : 2번에서 생성된 Connection객체를 이용하여
 	 * 				Statement객체 또는 PreparedStatement객체를 생성한 후
-	 * 				이 객체를 이용하여 SQK문장을 실행한다
+	 * 				이 객체를 이용하여 SQL문장을 실행한다
 	 * 
 	 * 4. 결과 :
 	 * 		1) SQL문이 select일 경우 : ResultSet객체가 만들어진다
@@ -32,7 +32,7 @@ public class JdbcTest01 {
 	 * 
 	 * 5. 자원반납 : 각 객체의 close()메서드를 호출해서 처리한다
 	 * 
-	 * 
+	 * jdbc는 자동커밋
 	 */
 	public static void main(String[] args) {
 		// DB작업에 필요한 객체변수 선언
