@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import util.DBUtil;
+import util.DBUtil2;
+import util.DBUtil3;
 
 /*
  *  선생님 버전
@@ -225,7 +227,9 @@ public class MemberInfoTest2 {
 		System.out.println("--------------------------------------------------------");
 		
 		try {
-			conn = DBUtil.getConnection();
+//			conn = DBUtil.getConnection();
+//			conn = DBUtil2.getConnection();
+			conn = DBUtil3.getConnection();
 			
 			String sql = "select * from mymember";
 			
