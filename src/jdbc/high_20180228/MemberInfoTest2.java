@@ -34,6 +34,7 @@ public class MemberInfoTest2 {
 		System.out.print("작업 선택 >> ");
 	}
 	
+	// 작업을 시작하는 메서드
 	public void startMember() {
 		int choice;
 		
