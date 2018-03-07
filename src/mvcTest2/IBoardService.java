@@ -10,7 +10,7 @@ public interface IBoardService {
 	// 수정
 	public int updateBoardVO(BoardVO boardVO);
 	// 삭제
-	public int deleteBoardVO(BoardVO boardVO);
+	public int deleteBoardVO(int board_no);
 	// 검색
-	public List<BoardVO> getBoardVO(String board_title);
+	public List<BoardVO> getBoardVO(BoardVO boardVO);
 }

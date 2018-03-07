@@ -3,11 +3,17 @@ package mvcTest2;
 import java.util.List;
 
 public class BoardService implements IBoardService {
-	private IBoardDao boardDao;
+	private static IBoardDao boardDao;
+	private static BoardService service = new BoardService();
 	
-	public BoardService(){
-		boardDao = new BoardDao();
+	private BoardService(){
+		System.out.println("service 싱글톤 적용");
+		boardDao = BoardDao.getInstance();
 	}
+	public static BoardService getInstance(){
+		return service;
+	}
+	
 	
 	@Override
 	public List<BoardVO> getTotalList() {
@@ -25,13 +31,13 @@ public class BoardService implements IBoardService {
 	}
 
 	@Override
-	public int deleteBoardVO(BoardVO boardVO) {
-		return boardDao.deleteBoardVO(boardVO);
+	public int deleteBoardVO(int board_no) {
+		return boardDao.deleteBoardVO(board_no);
 	}
 
 	@Override
-	public List<BoardVO> getBoardVO(String board_title) {
-		return boardDao.getBoardVO(board_title);
+	public List<BoardVO> getBoardVO(BoardVO boardVO) {
+		return boardDao.getBoardVO(boardVO);
 	}
 
 }
