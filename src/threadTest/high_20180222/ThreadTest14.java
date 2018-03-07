@@ -3,7 +3,10 @@ package threadTest.high_20180222;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-
+/*
+ * lock은 synchronized를 대신해서 사용하는 방법이다
+ * lock객체의 메서드인 lock(), unlock()을 사용한다
+ */
 //lock 사용
 public class ThreadTest14 {
 
@@ -19,7 +22,7 @@ public class ThreadTest14 {
 	}
 
 	// 입금하는 메서드
-	public synchronized void deposit(int money) {
+	public void deposit(int money) {
 		//lock()메서드로 락을 설정한 곳에서는 반드시 unlock으로 락을 해제해야한다.
 		lock.lock();
 		balance += money;
@@ -28,6 +31,7 @@ public class ThreadTest14 {
 	
 	//출금하면 true 실패 >> false
 	//try catch블럭이 사용되는 부분에서 unlock 호출하려면 final블럭에서 호출하도록 한다
+	
 	@SuppressWarnings("finally")
 	public boolean withdaw(int money){
 		lock.lock();
