@@ -11,7 +11,19 @@ import java.util.List;
 import util.DBUtil3;
 
 public class MemberDao implements MemberDaoInf{
-
+	// 자기 참조 변수 선언 및 초기화
+	private static MemberDao dao = new MemberDao();
+	
+	// 생성자
+	private MemberDao(){
+		System.out.println("DAO 싱글톤 적용");
+	}
+	
+	// 자기 참조값을 반환하는 메서드
+	public static MemberDao getInstance(){
+		return dao;
+	}
+	
 	@Override
 	public int insertMember(MemberVO memVo) {
 		Connection conn = null;

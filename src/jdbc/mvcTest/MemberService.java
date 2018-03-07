@@ -2,12 +2,24 @@ package jdbc.mvcTest;
 
 import java.util.List;
 
+
 public class MemberService implements MemberServiceInf {
 	private MemberDaoInf memDao;
 	
-	public MemberService() {
+	// 자기 참조 변수
+	private static MemberService service = new MemberService();
+	
+	// 생성자
+	private MemberService() {
 		// Service객체는 DAO객체를 사용해야 하기 때문에 DAO객체를 생성해야 한다.
-		memDao = new MemberDao();
+		// 싱글턴이 적용된 DAO객체를 받아온다
+		memDao = MemberDao.getInstance();
+		System.out.println("Service 싱글턴 적용");
+	}
+	
+	// 객체 반환 메서드
+	public static MemberService getInstance(){
+		return service;
 	}
 	
 	@Override
