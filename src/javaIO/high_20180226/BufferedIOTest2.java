@@ -12,7 +12,7 @@ public class BufferedIOTest2 {
 			// 이클립스에서 만든 자바프로그램이 실행되는 기본 위치는
 			// 프로젝트 폴더가 기본 위치가 된다.		
 			
-			FileReader fr = new FileReader("./src/basic/ByteArrayIOTest1.java");
+			FileReader fr = new FileReader("./src/javaIO/high_20180226/ByteArrayIOTest2.java");
 			BufferedReader br = new BufferedReader(fr);
 			
 			String temp = "";
