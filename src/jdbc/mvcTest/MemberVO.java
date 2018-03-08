@@ -1,4 +1,5 @@
 package jdbc.mvcTest;
+
 /*
  * VO객체 - 보통 DB의 자료를 저장할 객체
  * 
