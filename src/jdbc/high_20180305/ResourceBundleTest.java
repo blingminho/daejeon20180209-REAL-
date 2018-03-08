@@ -13,7 +13,7 @@ public class ResourceBundleTest {
 		 * ResourceBundle객체 생성
 		 * 		객체를 생성할 때 파일을 지정하는데 '파일명'만 지정하고
 		 * 		'확장자'는 지정하지 않는다
-		 * 		경로는 패키지 내에만 있으면 됨 -> 같은 이름의 properties파일이 있는 경우 에러 발생
+		 * 		경로는 프로젝트 내에만 있으면 됨 -> 같은 이름의 properties파일이 있는 경우 에러 발생
 		 * 		(이유 : 확장자는 항상 properties이기 때문에...)
 		 */
 		ResourceBundle bundle = ResourceBundle.getBundle("db");// db라는 이름을 가진 파일명
